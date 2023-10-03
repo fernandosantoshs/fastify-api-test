@@ -9,11 +9,12 @@
 // server.listen(3333);
 
 import { fastify } from 'fastify';
-import { DatabaseMemory } from './database-memory.js';
+// import { DatabaseMemory } from './database-memory.js';
+import { PostgresDabatase } from './database-postgres.js';
 
 const server = fastify();
 
-const database = new DatabaseMemory();
+const database = new PostgresDabatase();
 
 server.post('/videos', (request, reply) => {
   const { title, description, duration } = request.body;
