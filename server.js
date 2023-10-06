@@ -39,7 +39,7 @@ server.put('/videos/:id', (request, reply) => {
   const videoId = request.params.id;
   const { title, description, duration } = request.body;
 
-  const video = database.update(videoId, {
+  database.update(videoId, {
     title,
     description,
     duration,

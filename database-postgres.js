@@ -3,7 +3,15 @@ import { sql } from './db.js';
 
 export class PostgresDabatase {
   async list(search) {
-    const videos = await sql`SELECT * FROM VIDEOS`;
+    let videos;
+
+    if (search) {
+      videos = await sql` SELECT * from videos where title ilike ${
+        '%' + search + '%'
+      }`;
+    } else {
+      videos = await sql`SELECT * FROM VIDEOS`;
+    }
 
     return videos;
   }
@@ -23,10 +31,6 @@ export class PostgresDabatase {
       ${description},
       ${duration}
       )`;
-
-    //console.log(`${title}, ${description}, ${duration}`);
-    // this.#videos.set(videoId, video);
-    // return video;
   }
 
   async update(id, video) {
